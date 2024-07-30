@@ -1,0 +1,84 @@
+import java.util.Scanner;
+// Node class representing each element in the list
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+// SinglyLinkedList class
+class SinglyLinkedList {
+    Node head;
+
+    // Constructor to initialize the list
+    public SinglyLinkedList() {
+        head = null;
+    }
+
+    // Method to insert a new node at the end of the list
+    public void insertEnd(int data) {
+        Node newNode = new Node(data);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    // Method to delete a node from the beginning of the list
+    public void deleteBegin() {
+        if (head == null) {
+            System.out.println("List is empty");
+        } else {
+            head = head.next;
+        }
+    }
+
+    // Method to print the list
+    public void printList() {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        SinglyLinkedList list = new SinglyLinkedList();
+        System.out.println("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        System.out.println("Enter the elements: ");
+        for (int i = 0; i < n; i++) {
+            int data = scanner.nextInt();
+            list.insertEnd(data);
+        }
+
+        System.out.println("Queue: ");
+        list.printList();
+
+        System.out.println("Enter the number of elements to delete from the beginning: ");
+        int m = scanner.nextInt();
+
+        for (int i = 0; i < m; i++) {
+            list.deleteBegin();
+        }
+
+        System.out.println("Queue after deletion: ");
+        list.printList();
+    }
+}
